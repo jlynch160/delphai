@@ -16,6 +16,7 @@ except Exception:
 
 import json
 import time
+import html as _html
 
 from flask import Flask, request, jsonify, send_file, Response, stream_with_context
 
@@ -90,6 +91,33 @@ _LEARN_MATCH = {
 
 def _clean_html(s: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", s or "")).strip()
+
+
+def _safe_download_name(raw: str, fallback: str) -> str:
+    name = Path(raw or "").name
+    name = re.sub(r"[^A-Za-z0-9._-]+", "-", name).strip(".-")
+    return name or fallback
+
+
+def _attachment(filename: str, content: str, content_type: str) -> Response:
+    return Response(
+        content,
+        content_type=content_type,
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+            "X-Content-Type-Options": "nosniff",
+        },
+    )
+
+
+@app.post("/api/download")
+def download():
+    filename = _safe_download_name(request.form.get("filename", ""),
+                                   "delphai-download.txt")
+    content_type = request.form.get("content_type", "text/plain;charset=utf-8")
+    if not content_type.startswith(("text/plain", "text/html", "text/calendar")):
+        content_type = "text/plain;charset=utf-8"
+    return _attachment(filename, request.form.get("content", ""), content_type)
 
 
 @app.route("/api/learn")
@@ -168,6 +196,40 @@ def _mission_from_args():
     raw = request.args.get("candidates", "")
     candidates = [c for c in raw.split(",") if c] or DEFAULT_CANDIDATES
     return cert, required, weeks, candidates
+
+
+@app.route("/api/brief")
+def brief():
+    cert, required, weeks, candidates = _mission_from_args()
+    orch = Orchestrator()
+    scenario = Scenario(cert_id=cert, required=required, deadline_weeks=weeks,
+                        candidate_ids=candidates)
+    turns, result = [], {}
+    for t in orch.run(scenario):
+        turns.append(t)
+        for k in _SAFE_KEYS:
+            if k in t.data:
+                result[k] = t.data[k]
+
+    odds = round(float(result.get("final", 0)) * 100)
+    decision = str(result.get("decision") or "Decision pending")
+    recommendation = str(result.get("recommendation") or "")
+    safe = _html.escape
+    rows = "\n".join(
+        f"<tr><td>{safe(t.agent)}</td><td>{safe(t.persona_label)}</td>"
+        f"<td>{safe(t.headline)}</td></tr>"
+        for t in turns
+    )
+    html = f"""<!doctype html><meta charset=utf-8><title>DELPHAI — {safe(cert)} brief</title>
+<style>body{{font:15px/1.6 system-ui;max-width:860px;margin:30px auto;padding:0 18px;background:#0e0b1a;color:#f3f0ff}}h1{{color:#20F593}}h2{{color:#9b5cf6;margin-top:26px}}.rec{{display:inline-block;padding:6px 14px;border-radius:999px;background:#ff8b3d;color:#000;font-weight:800}}table{{width:100%;border-collapse:collapse;margin:12px 0}}td,th{{border:1px solid #2c2447;padding:7px;text-align:left;font-size:13px;vertical-align:top}}</style>
+<h1>◆ DELPHAI — Certification Readiness Brief</h1>
+<p>{safe(cert)} · {required} of {len(candidates)} · {weeks:g} wks · {time.strftime("%Y-%m-%d")}</p>
+<h2>Verdict</h2><p><span class="rec">{safe(decision.split("—", 1)[0].strip())}</span> &nbsp; <b>{odds}% team odds</b> — {safe(decision)}</p>
+<h2>Recommendation</h2><p>{safe(recommendation)}</p>
+<h2>Council record</h2><table><tr><th>Advisor</th><th>Role</th><th>Read</th></tr>{rows}</table>
+<p style="color:#9c93bb;font-size:12px;margin-top:28px">DELPHAI — synthetic demo data · reconciled by the AI council.</p>"""
+    filename = f"delphai-{_safe_download_name(cert, 'brief')}-brief.html"
+    return _attachment(filename, html, "text/html;charset=utf-8")
 
 
 @app.route("/api/council/stream")

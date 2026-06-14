@@ -1921,8 +1921,8 @@ function downloadStudyPlans(){if(!SC)return;const s=SC;const L=[`DELPHAI — TEA
     x.weeks.forEach(w=>L.push(`   Wk ${w.wk}: ${w.focus} (${w.hours}h) — ${w.activity}${w.milestone?"  ["+w.milestone+"]":""}`));
     L.push("");});
   L.push("Grounded in Microsoft Learn · synthetic demo data · DELPHAI on Microsoft Foundry.");
-  const blob=new Blob([L.join("\n")],{type:"text/plain"});const a=el("a");a.href=URL.createObjectURL(blob);a.download="delphai-study-plans-"+s.cert.id+".txt";a.click();URL.revokeObjectURL(a.href);}
-function downloadText(name,text,type){const b=new Blob([text],{type:type||"text/plain"});const a=el("a");a.href=URL.createObjectURL(b);a.download=name;a.click();URL.revokeObjectURL(a.href);}
+  downloadText("delphai-study-plans-"+s.cert.id+".txt",L.join("\n"),"text/plain;charset=utf-8");}
+function downloadText(name,text,type){const f=el("form");f.method="POST";f.action="/api/download";f.acceptCharset="UTF-8";f.style.display="none";[["filename",name],["content_type",type||"text/plain;charset=utf-8"],["content",text]].forEach(([k,v])=>{const i=el("input");i.type="hidden";i.name=k;i.value=v;f.appendChild(i);});document.body.appendChild(f);f.submit();setTimeout(()=>f.remove(),1000);}
 /* ---- the agent ACTS: book study blocks into calendars ---- */
 function downloadCalendar(){if(!SC)return;const s=SC;const slotHour={Morning:8,Afternoon:13,Evening:18};const z=n=>String(n).padStart(2,"0");
   const base=new Date();base.setDate(base.getDate()+((8-base.getDay())%7||7));   // next Monday
@@ -2069,18 +2069,7 @@ async function doAsk(agentId){const inp=$("#askq");const q=(inp.value||"").trim(
   else{ans.innerHTML='<div class="abody"></div>';await typewriter(ans.querySelector(".abody"),ASK_OFFLINE[agentId]||"My position stands.");}}
 const _am=$("#askmodal");if(_am)_am.addEventListener("click",e=>{if(e.target.id==="askmodal")closeAsk();});
 
-function exportReport(){if(!SC)return;const s=SC;
-  const rows=s.findings.map(f=>`<tr><td>${f.sev}</td><td>${(byId[f.lens]||{}).name||""}</td><td>${esc(f.title)}</td><td>${esc(f.rec||"")}</td><td>${esc(f.evidence||"")}</td></tr>`).join("");
-  const reads=LENS.map(id=>`<li><b>${byId[id].name}</b> (${esc(byId[id].role)}) — ${s.scores[id]}%</li>`).join("");
-  const html=`<!doctype html><meta charset=utf-8><title>DELPHAI — ${esc(s.host)}</title>
-  <style>body{font:15px/1.6 system-ui;max-width:860px;margin:30px auto;padding:0 18px;background:#0e0b1a;color:#f3f0ff}h1{color:#20F593}h2{color:#9b5cf6;margin-top:26px}.rec{display:inline-block;padding:6px 14px;border-radius:999px;background:${s.recColor};color:#000;font-weight:800}table{width:100%;border-collapse:collapse;margin:12px 0}td,th{border:1px solid #2c2447;padding:7px;text-align:left;font-size:13px;vertical-align:top}ul{margin:6px 0}</style>
-  <h1>◆ DELPHAI — Certification Readiness Brief</h1><p>${esc(s.host)} · ${s.cert.title} · ${new Date().toISOString().slice(0,10)}</p>
-  <h2>Verdict</h2><p><span class="rec">${s.recommendation}</span> &nbsp; <b>${s.overall}% team odds</b> — ${esc(s.chairHead)}</p>
-  <h2>The plan${s.plan.clears?" to GO":""}</h2><p><b>${esc(s.plan.headline)}</b> — projected ${fmtPct(s.plan.projected)} vs ${fmtPct(s.plan.target)} target ${s.plan.clears?"✓ clears GO":"(closes the gap)"}</p><ol>${s.plan.steps.map(st=>`<li><b>${esc(st.who)}:</b> ${esc(st.text)} <i>${esc(st.impact)}</i></li>`).join("")}</ol>
-  <h2>Council reads</h2><ul>${reads}</ul>
-  <h2>Risks &amp; recommended actions</h2><table><tr><th>Sev</th><th>Flagged by</th><th>Candidate / risk</th><th>Recommendation</th><th>Evidence</th></tr>${rows}</table>
-  <p style="color:#9c93bb;font-size:12px;margin-top:28px">DELPHAI — synthetic demo data · reconciled by the AI council${hasBackend?" on Microsoft Foundry gpt-4.1":""}.</p>`;
-  const blob=new Blob([html],{type:"text/html"});const a=el("a");a.href=URL.createObjectURL(blob);a.download="delphai-"+s.cert.id+"-brief.html";a.click();URL.revokeObjectURL(a.href);}
+function exportReport(){if(!SC)return;const st=SC.st||state,q=new URLSearchParams({cert:st.certId,required:st.required,weeks:st.weeks});if(st.ids&&st.ids.length)q.set("candidates",st.ids.join(","));window.location.href="/api/brief?"+q.toString();}
 
 </script>
 <script>
