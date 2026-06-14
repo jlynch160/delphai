@@ -25,6 +25,9 @@ All notable changes to DELPHAI (Microsoft Agents League, Battle #2 — Reasoning
 ### Changed
 - README + UI now describe Foundry IQ as real Azure AI Search (no longer a "stand-in").
 - Added an Observability / tracing / proof-artifacts section to the README.
+- Rewrote the README as a professional showcase (badges, TOC, overview, problem, solution,
+  differentiators, key features, architecture, tech stack, getting started, project structure,
+  rubric mapping, roadmap) and added GitHub repository topics.
 
 ### Fixed / hygiene
 - Removed a real email address from `.env.example` (synthetic/no-PII compliance).
