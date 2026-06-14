@@ -1,0 +1,17 @@
+{
+  "_comment": "SYNTHETIC prediction history for the trust scorecard (Historian agent). Each entry: the reconciled probability the system gave a past mission, and whether the requirement was actually met. Accuracy = share where a >=50% call matched the outcome.",
+  "history": [
+    { "mission": "M-2025-014", "predicted_prob": 0.82, "requirement_met": true },
+    { "mission": "M-2025-013", "predicted_prob": 0.55, "requirement_met": true },
+    { "mission": "M-2025-012", "predicted_prob": 0.40, "requirement_met": false },
+    { "mission": "M-2025-011", "predicted_prob": 0.78, "requirement_met": true },
+    { "mission": "M-2025-010", "predicted_prob": 0.33, "requirement_met": false },
+    { "mission": "M-2025-009", "predicted_prob": 0.61, "requirement_met": true },
+    { "mission": "M-2025-008", "predicted_prob": 0.48, "requirement_met": false },
+    { "mission": "M-2025-007", "predicted_prob": 0.71, "requirement_met": true },
+    { "mission": "M-2025-006", "predicted_prob": 0.58, "requirement_met": false },
+    { "mission": "M-2025-005", "predicted_prob": 0.29, "requirement_met": false },
+    { "mission": "M-2025-004", "predicted_prob": 0.66, "requirement_met": true },
+    { "mission": "M-2025-003", "predicted_prob": 0.44, "requirement_met": true }
+  ]
+}

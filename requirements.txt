@@ -1,0 +1,7 @@
+# Runtime for the live QUORUM web app (Azure App Service)
+flask>=3.0
+gunicorn>=21.2
+openai>=1.40
+python-dotenv>=1.0
+rich>=13.7
+azure-search-documents>=11.5,<12   # Foundry IQ grounding (real Azure AI Search hybrid retrieval)

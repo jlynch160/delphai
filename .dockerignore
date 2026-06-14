@@ -1,0 +1,13 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+.git/
+.gitignore
+.pytest_cache/
+*.md
+connect_test.py
+
+quorum-new.html
+quorum-classic.html
+quorum-prev.html

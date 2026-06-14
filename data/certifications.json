@@ -1,0 +1,183 @@
+{
+  "_comment": "SYNTHETIC Fabric IQ semantic seed. Certification ontology: skills, exam-domain weightings, prerequisites, historical first-pass rates. Used for skill-adjacency reasoning and the exam-blueprint coverage gate.",
+  "pass_threshold_practice": 75,
+  "certifications": [
+    {
+      "id": "AZ-900",
+      "title": "Azure Fundamentals",
+      "level": "fundamental",
+      "skills": ["Cloud Concepts", "Azure Services", "Governance"],
+      "recommended_hours": 10,
+      "first_pass_rate": 0.88,
+      "prerequisites": [],
+      "exam_domains": [
+        { "name": "Cloud Concepts", "weight": 0.30 },
+        { "name": "Azure Services", "weight": 0.40 },
+        { "name": "Governance", "weight": 0.30 }
+      ]
+    },
+    {
+      "id": "AZ-104",
+      "title": "Azure Administrator",
+      "level": "associate",
+      "skills": ["Identity", "Storage", "Compute", "Networking"],
+      "recommended_hours": 22,
+      "first_pass_rate": 0.62,
+      "prerequisites": ["AZ-900"],
+      "exam_domains": [
+        { "name": "Identity", "weight": 0.20 },
+        { "name": "Storage", "weight": 0.20 },
+        { "name": "Compute", "weight": 0.35 },
+        { "name": "Networking", "weight": 0.25 }
+      ]
+    },
+    {
+      "id": "AZ-204",
+      "title": "Azure Developer Associate",
+      "level": "associate",
+      "skills": ["API Development", "Azure Functions", "Storage", "Security"],
+      "recommended_hours": 20,
+      "first_pass_rate": 0.58,
+      "prerequisites": ["AZ-900"],
+      "exam_domains": [
+        { "name": "API Development", "weight": 0.35 },
+        { "name": "Azure Functions", "weight": 0.30 },
+        { "name": "Storage", "weight": 0.20 },
+        { "name": "Security", "weight": 0.15 }
+      ]
+    },
+    {
+      "id": "AZ-400",
+      "title": "DevOps Engineer Expert",
+      "level": "expert",
+      "skills": ["CI/CD", "Monitoring", "GitHub Actions", "Infrastructure as Code"],
+      "recommended_hours": 25,
+      "first_pass_rate": 0.51,
+      "prerequisites": ["AZ-104", "AZ-204"],
+      "exam_domains": [
+        { "name": "CI/CD", "weight": 0.40 },
+        { "name": "Monitoring", "weight": 0.25 },
+        { "name": "GitHub Actions", "weight": 0.20 },
+        { "name": "Infrastructure as Code", "weight": 0.15 }
+      ]
+    },
+    {
+      "id": "AZ-305",
+      "title": "Solutions Architect Expert",
+      "level": "expert",
+      "skills": ["Design Identity", "Design Data Storage", "Design Business Continuity", "Networking"],
+      "recommended_hours": 28,
+      "first_pass_rate": 0.49,
+      "prerequisites": ["AZ-104"],
+      "exam_domains": [
+        { "name": "Design Identity", "weight": 0.30 },
+        { "name": "Design Data Storage", "weight": 0.30 },
+        { "name": "Design Business Continuity", "weight": 0.25 },
+        { "name": "Networking", "weight": 0.15 }
+      ]
+    },
+    {
+      "id": "AZ-500",
+      "title": "Azure Security Engineer Associate",
+      "level": "associate",
+      "skills": ["Identity & Access", "Secure Networking", "Platform Protection", "Security Operations"],
+      "recommended_hours": 26,
+      "first_pass_rate": 0.55,
+      "prerequisites": ["SC-900"],
+      "exam_domains": [
+        { "name": "Identity & Access", "weight": 0.30 },
+        { "name": "Secure Networking", "weight": 0.25 },
+        { "name": "Platform Protection", "weight": 0.25 },
+        { "name": "Security Operations", "weight": 0.20 }
+      ]
+    },
+    {
+      "id": "DP-203",
+      "title": "Data Engineer Associate",
+      "level": "associate",
+      "skills": ["Data Storage", "Data Processing", "Security", "Monitoring"],
+      "recommended_hours": 22,
+      "first_pass_rate": 0.56,
+      "prerequisites": ["DP-900"],
+      "exam_domains": [
+        { "name": "Data Storage", "weight": 0.35 },
+        { "name": "Data Processing", "weight": 0.40 },
+        { "name": "Security", "weight": 0.25 }
+      ]
+    },
+    {
+      "id": "SC-900",
+      "title": "Security, Compliance & Identity Fundamentals",
+      "level": "fundamental",
+      "skills": ["Security Concepts", "Microsoft Entra", "Threat Protection", "Compliance"],
+      "recommended_hours": 12,
+      "first_pass_rate": 0.82,
+      "prerequisites": [],
+      "exam_domains": [
+        { "name": "SCI concepts", "weight": 0.25 },
+        { "name": "Microsoft Entra", "weight": 0.30 },
+        { "name": "Security solutions", "weight": 0.25 },
+        { "name": "Compliance solutions", "weight": 0.20 }
+      ]
+    },
+    {
+      "id": "SC-200",
+      "title": "Security Operations Analyst Associate",
+      "level": "associate",
+      "skills": ["Defender XDR", "Defender for Cloud", "Microsoft Sentinel", "Threat Hunting"],
+      "recommended_hours": 24,
+      "first_pass_rate": 0.58,
+      "prerequisites": ["SC-900"],
+      "exam_domains": [
+        { "name": "Defender XDR", "weight": 0.35 },
+        { "name": "Defender for Cloud", "weight": 0.25 },
+        { "name": "Microsoft Sentinel", "weight": 0.40 }
+      ]
+    },
+    {
+      "id": "SC-300",
+      "title": "Identity & Access Administrator Associate",
+      "level": "associate",
+      "skills": ["Entra Identities", "Authentication", "Application Access", "Identity Governance"],
+      "recommended_hours": 24,
+      "first_pass_rate": 0.57,
+      "prerequisites": ["SC-900"],
+      "exam_domains": [
+        { "name": "Implement identities", "weight": 0.30 },
+        { "name": "Authentication & access", "weight": 0.30 },
+        { "name": "Application access", "weight": 0.20 },
+        { "name": "Identity governance", "weight": 0.20 }
+      ]
+    },
+    {
+      "id": "SC-400",
+      "title": "Information Protection & Compliance Administrator",
+      "level": "associate",
+      "skills": ["Information Protection", "Data Loss Prevention", "Data Lifecycle", "Insider Risk"],
+      "recommended_hours": 22,
+      "first_pass_rate": 0.56,
+      "prerequisites": ["SC-900"],
+      "exam_domains": [
+        { "name": "Information protection", "weight": 0.35 },
+        { "name": "Data loss prevention", "weight": 0.30 },
+        { "name": "Data lifecycle", "weight": 0.20 },
+        { "name": "Insider risk", "weight": 0.15 }
+      ]
+    },
+    {
+      "id": "SC-100",
+      "title": "Cybersecurity Architect Expert",
+      "level": "expert",
+      "skills": ["Zero Trust", "GRC", "Infrastructure Security", "Data & App Security"],
+      "recommended_hours": 30,
+      "first_pass_rate": 0.48,
+      "prerequisites": ["AZ-500", "SC-200"],
+      "exam_domains": [
+        { "name": "Zero Trust strategy", "weight": 0.30 },
+        { "name": "GRC capabilities", "weight": 0.25 },
+        { "name": "Infrastructure security", "weight": 0.25 },
+        { "name": "Data & app security", "weight": 0.20 }
+      ]
+    }
+  ]
+}

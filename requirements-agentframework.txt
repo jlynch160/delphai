@@ -1,0 +1,7 @@
+# Microsoft Agent Framework path (foundry_agents.py) — kept separate so the deployed
+# container image stays lean (the live app uses src/orchestrator.py).
+#   python -m pip install -r requirements-agentframework.txt
+#   python foundry_agents.py
+agent-framework --pre
+openai>=1.40
+python-dotenv>=1.0

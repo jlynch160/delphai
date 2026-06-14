@@ -1,0 +1,113 @@
+{
+  "_comment": "SYNTHETIC DATA ONLY. The 'Aegis' security delivery team. 'level' = seniority (Principal/Senior/Mid/Associate). 'skills' = proficiency 1-5 per skill, tracking level; matched against a cert's required skills to gauge readiness. 'human' = self-disclosed wellbeing signals (accommodate, never rank). Mirrors the QUORUM demo roster.",
+  "learners": [
+    {
+      "learner_id": "L-2001", "name": "Priya Natarajan", "role": "SOC Analyst", "level": "Mid",
+      "target_certification": "SC-200", "holds_certifications": ["SC-900"],
+      "practice_score_avg": 67, "hours_studied": 18,
+      "domain_scores": { "Defender XDR": 72, "Defender for Cloud": 58, "Microsoft Sentinel": 63 },
+      "skills": { "Defender XDR": 3, "Microsoft Sentinel": 3, "Threat Protection": 2 },
+      "human": { "anxiety": "high", "life": "newborn at home", "life_hit": 4 },
+      "exam_outcome": "Fail", "first_attempt_history": "Fail"
+    },
+    {
+      "learner_id": "L-2002", "name": "Marcus Bell", "role": "Security Engineer", "level": "Senior",
+      "target_certification": "AZ-500", "holds_certifications": ["SC-900", "AZ-104"],
+      "practice_score_avg": 82, "hours_studied": 24,
+      "domain_scores": { "Identity & Access": 85, "Secure Networking": 80, "Platform Protection": 81, "Security Operations": 83 },
+      "skills": { "Identity & Access": 5, "Secure Networking": 4, "Platform Protection": 4, "Security Operations": 4, "Microsoft Entra": 4 },
+      "human": { "anxiety": "none", "life": "none", "life_hit": 0 },
+      "exam_outcome": "Pass", "first_attempt_history": "Pass"
+    },
+    {
+      "learner_id": "L-2003", "name": "Elena Rossi", "role": "IAM Engineer", "level": "Senior",
+      "target_certification": "SC-300", "holds_certifications": ["SC-900"],
+      "practice_score_avg": 74, "hours_studied": 20,
+      "domain_scores": { "Implement identities": 78, "Authentication & access": 70, "Identity governance": 72 },
+      "skills": { "Entra Identities": 4, "Authentication": 4, "Identity Governance": 3, "Microsoft Entra": 4 },
+      "human": { "anxiety": "moderate", "life": "none", "life_hit": 0 },
+      "exam_outcome": "Pass", "first_attempt_history": "Pass"
+    },
+    {
+      "learner_id": "L-2004", "name": "Tom Becker", "role": "SOC Analyst", "level": "Associate",
+      "target_certification": "SC-200", "holds_certifications": [],
+      "practice_score_avg": 61, "hours_studied": 12,
+      "domain_scores": { "Defender XDR": 64, "Defender for Cloud": 48, "Microsoft Sentinel": 58 },
+      "skills": { "Defender XDR": 3, "Threat Protection": 2 },
+      "human": { "anxiety": "moderate", "life": "evening night class", "life_hit": 2 },
+      "exam_outcome": "Untested", "first_attempt_history": null
+    },
+    {
+      "learner_id": "L-2006", "name": "Dani Cohen", "role": "Security Engineer", "level": "Associate",
+      "target_certification": "AZ-500", "holds_certifications": [],
+      "practice_score_avg": 58, "hours_studied": 9,
+      "domain_scores": { "Identity & Access": 60, "Secure Networking": 50, "Platform Protection": 64 },
+      "skills": { "Identity & Access": 3, "Secure Networking": 2 },
+      "human": { "anxiety": "high", "life": "none", "life_hit": 0 },
+      "exam_outcome": "Untested", "first_attempt_history": null
+    },
+    {
+      "learner_id": "L-2008", "name": "Aisha Khan", "role": "Security Engineer", "level": "Senior",
+      "target_certification": "AZ-500", "holds_certifications": ["SC-900", "AZ-104"],
+      "practice_score_avg": 84, "hours_studied": 22,
+      "domain_scores": { "Identity & Access": 86, "Secure Networking": 82, "Platform Protection": 84, "Security Operations": 83 },
+      "skills": { "Identity & Access": 4, "Secure Networking": 4, "Platform Protection": 4, "Security Operations": 4, "Defender for Cloud": 3 },
+      "human": { "anxiety": "none", "life": "caregiver for a parent", "life_hit": 3 },
+      "exam_outcome": "Untested", "first_attempt_history": null
+    },
+    {
+      "learner_id": "L-2010", "name": "Liam O'Brien", "role": "Cloud Security Engineer", "level": "Principal",
+      "target_certification": "AZ-500", "holds_certifications": ["SC-900", "AZ-104"],
+      "practice_score_avg": 88, "hours_studied": 26,
+      "domain_scores": { "Identity & Access": 90, "Secure Networking": 87, "Platform Protection": 88, "Security Operations": 88 },
+      "skills": { "Identity & Access": 5, "Secure Networking": 5, "Platform Protection": 5, "Security Operations": 4, "Zero Trust": 4, "Microsoft Sentinel": 4, "Microsoft Entra": 4 },
+      "human": { "anxiety": "none", "life": "none", "life_hit": 0 },
+      "exam_outcome": "Untested", "first_attempt_history": null
+    },
+    {
+      "learner_id": "L-2011", "name": "Sofia Mendez", "role": "Detection Engineer", "level": "Senior",
+      "target_certification": "SC-200", "holds_certifications": ["SC-900"],
+      "practice_score_avg": 76, "hours_studied": 19,
+      "domain_scores": { "Defender XDR": 80, "Defender for Cloud": 72, "Microsoft Sentinel": 78 },
+      "skills": { "Defender XDR": 4, "Defender for Cloud": 4, "Microsoft Sentinel": 5, "Threat Hunting": 4 },
+      "human": { "anxiety": "moderate", "life": "none", "life_hit": 0 },
+      "exam_outcome": "Untested", "first_attempt_history": null
+    },
+    {
+      "learner_id": "L-2012", "name": "Raj Patel", "role": "GRC Analyst", "level": "Mid",
+      "target_certification": "SC-400", "holds_certifications": ["SC-900"],
+      "practice_score_avg": 70, "hours_studied": 16,
+      "domain_scores": { "Information protection": 74, "Data loss prevention": 66, "Insider risk": 70 },
+      "skills": { "Information Protection": 3, "Data Loss Prevention": 3, "GRC": 4, "Compliance": 4 },
+      "human": { "anxiety": "none", "life": "two young kids", "life_hit": 2 },
+      "exam_outcome": "Untested", "first_attempt_history": null
+    },
+    {
+      "learner_id": "L-2013", "name": "Grace Kim", "role": "Security Architect", "level": "Principal",
+      "target_certification": "SC-100", "holds_certifications": ["AZ-500", "SC-200"],
+      "practice_score_avg": 85, "hours_studied": 25,
+      "domain_scores": { "Zero Trust strategy": 87, "GRC capabilities": 82, "Infrastructure security": 84, "Data & app security": 86 },
+      "skills": { "Zero Trust": 5, "GRC": 5, "Infrastructure Security": 4, "Data & App Security": 4, "Identity & Access": 4, "Secure Networking": 3 },
+      "human": { "anxiety": "none", "life": "none", "life_hit": 0 },
+      "exam_outcome": "Untested", "first_attempt_history": null
+    },
+    {
+      "learner_id": "L-2014", "name": "Noah Schmidt", "role": "Incident Responder", "level": "Associate",
+      "target_certification": "SC-200", "holds_certifications": ["SC-900"],
+      "practice_score_avg": 64, "hours_studied": 14,
+      "domain_scores": { "Defender XDR": 67, "Defender for Cloud": 55, "Microsoft Sentinel": 60 },
+      "skills": { "Microsoft Sentinel": 3, "Threat Protection": 2 },
+      "human": { "anxiety": "high", "life": "recently relocated", "life_hit": 2 },
+      "exam_outcome": "Untested", "first_attempt_history": null
+    },
+    {
+      "learner_id": "L-2015", "name": "Yuki Tanaka", "role": "Cloud Security Engineer", "level": "Senior",
+      "target_certification": "AZ-500", "holds_certifications": ["SC-900", "AZ-104"],
+      "practice_score_avg": 79, "hours_studied": 21,
+      "domain_scores": { "Identity & Access": 82, "Secure Networking": 74, "Platform Protection": 78, "Security Operations": 80 },
+      "skills": { "Identity & Access": 4, "Secure Networking": 3, "Platform Protection": 4, "Microsoft Sentinel": 3 },
+      "human": { "anxiety": "none", "life": "none", "life_hit": 0 },
+      "exam_outcome": "Untested", "first_attempt_history": null
+    }
+  ]
+}

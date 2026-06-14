@@ -1,0 +1,17 @@
+{
+  "_comment": "SYNTHETIC Work IQ signals for the Aegis team. Fabricated; no real calendar data. learner_id matches learners.json.",
+  "work_signals": [
+    { "employee_id": "EMP-201", "learner_id": "L-2001", "meeting_hours_per_week": 22, "focus_hours_per_week": 10, "preferred_learning_slot": "Morning", "open_deadlines": 1, "recent_after_hours_study_sessions": 3 },
+    { "employee_id": "EMP-202", "learner_id": "L-2002", "meeting_hours_per_week": 15, "focus_hours_per_week": 18, "preferred_learning_slot": "Afternoon", "open_deadlines": 0, "recent_after_hours_study_sessions": 0 },
+    { "employee_id": "EMP-203", "learner_id": "L-2003", "meeting_hours_per_week": 17, "focus_hours_per_week": 15, "preferred_learning_slot": "Morning", "open_deadlines": 1, "recent_after_hours_study_sessions": 1 },
+    { "employee_id": "EMP-204", "learner_id": "L-2004", "meeting_hours_per_week": 12, "focus_hours_per_week": 20, "preferred_learning_slot": "Afternoon", "open_deadlines": 0, "recent_after_hours_study_sessions": 0 },
+    { "employee_id": "EMP-206", "learner_id": "L-2006", "meeting_hours_per_week": 14, "focus_hours_per_week": 16, "preferred_learning_slot": "Morning", "open_deadlines": 0, "recent_after_hours_study_sessions": 1 },
+    { "employee_id": "EMP-208", "learner_id": "L-2008", "meeting_hours_per_week": 16, "focus_hours_per_week": 17, "preferred_learning_slot": "Morning", "open_deadlines": 0, "recent_after_hours_study_sessions": 0 },
+    { "employee_id": "EMP-210", "learner_id": "L-2010", "meeting_hours_per_week": 13, "focus_hours_per_week": 19, "preferred_learning_slot": "Afternoon", "open_deadlines": 0, "recent_after_hours_study_sessions": 0 },
+    { "employee_id": "EMP-211", "learner_id": "L-2011", "meeting_hours_per_week": 16, "focus_hours_per_week": 16, "preferred_learning_slot": "Morning", "open_deadlines": 0, "recent_after_hours_study_sessions": 1 },
+    { "employee_id": "EMP-212", "learner_id": "L-2012", "meeting_hours_per_week": 18, "focus_hours_per_week": 14, "preferred_learning_slot": "Afternoon", "open_deadlines": 1, "recent_after_hours_study_sessions": 2 },
+    { "employee_id": "EMP-213", "learner_id": "L-2013", "meeting_hours_per_week": 14, "focus_hours_per_week": 18, "preferred_learning_slot": "Morning", "open_deadlines": 0, "recent_after_hours_study_sessions": 0 },
+    { "employee_id": "EMP-214", "learner_id": "L-2014", "meeting_hours_per_week": 20, "focus_hours_per_week": 12, "preferred_learning_slot": "Evening", "open_deadlines": 1, "recent_after_hours_study_sessions": 2 },
+    { "employee_id": "EMP-215", "learner_id": "L-2015", "meeting_hours_per_week": 15, "focus_hours_per_week": 17, "preferred_learning_slot": "Afternoon", "open_deadlines": 0, "recent_after_hours_study_sessions": 0 }
+  ]
+}
