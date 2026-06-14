@@ -31,6 +31,7 @@
 - [Overview](#-overview)
 - [The problem](#-the-problem)
 - [The solution](#-the-solution)
+- [What you'll see in the demo](#-what-youll-see-in-the-demo)
 - [What makes it different](#-what-makes-it-different)
 - [Key features](#-key-features)
 - [Architecture](#-architecture)
@@ -38,14 +39,18 @@
 - [Microsoft IQ integration](#-microsoft-iq-integration)
 - [Tools & grounding](#-tools--grounding)
 - [How it works](#-how-it-works)
+- [A run, end to end](#-a-run-end-to-end)
 - [Tech stack](#-tech-stack)
 - [Getting started](#-getting-started)
 - [Project structure](#-project-structure)
+- [The synthetic dataset](#-the-synthetic-dataset)
 - [The math](#-the-math)
 - [Observability, evaluation & proof](#-observability-evaluation--proof)
 - [Responsible AI & security](#-responsible-ai--security)
 - [Battle #2 rubric mapping](#-battle-2-rubric-mapping)
+- [FAQ](#-faq)
 - [Roadmap](#-roadmap)
+- [Acknowledgments](#-acknowledgments)
 - [License](#-license)
 
 ---
@@ -100,6 +105,19 @@ DELPHAI turns that promise into a **defensible, grounded decision**:
    per-person week-by-week plan, booked `.ics` study blocks, and a manager email brief.
 
 The model **narrates** the reasoning; it does **not invent** the numbers.
+
+---
+
+## 🎬 What you'll see in the demo
+
+> **[▶ Open the live app](https://delphai.wittyocean-5b0d21f3.westus3.azurecontainerapps.io/)** — no login. Suggested path: **Build my path → Whole team → SC-200 → 5 of 8 → 5 weeks → Convene.**
+
+1. **The ask.** A readiness console takes one question — cert · headcount · deadline — then a live ingestion screen brings Work IQ / Foundry IQ / Fabric IQ and the Microsoft Learn MCP "online".
+2. **The debate, streamed.** Eleven advisors reason token-by-token on gpt-4.1, each turn showing real latency + token telemetry. The optimist lands ~93–96%.
+3. **The tool-overrule** *(the moment to watch).* The Skeptic runs a code-interpreter tool, computes the exact Poisson-binomial — **77%** — and strikes through the optimist's guess.
+4. **The refusal.** Order the team past its limits and the Wellbeing agent **declines the instruction** outright — on the record.
+5. **The verdict.** A **GO / NEGOTIATE / NO-GO** gauge resolves, the tug-of-war needles settle, and a per-person plan appears with `.ics` study blocks and a manager email brief.
+6. **The Live Architecture Map.** An interactive map traces a request end-to-end through every component; click any node to inspect it.
 
 ---
 
@@ -265,6 +283,35 @@ Conductor.intake
 
 ---
 
+## 🎯 A run, end to end
+
+*Scenario: a manager asks DELPHAI to certify **5 of 8** engineers on the (synthetic) Aegis team for **SC-200** in **5 weeks**.*
+
+```mermaid
+sequenceDiagram
+    actor M as Manager
+    participant C as Conductor
+    participant P as Planner (optimist)
+    participant S as Skeptic
+    participant T as Code interpreter
+    participant W as Wellbeing
+    M->>C: Certify 5 of 8 for SC-200 in 5 weeks?
+    C->>P: Best-case forecast?
+    P-->>C: ~93–96% (assumes free evenings)
+    C->>S: Challenge it
+    S->>T: Compute exact Poisson-binomial
+    T-->>S: 77%
+    S-->>C: Overruled — 77%, not 93%
+    C->>W: Is the plan humane?
+    Note over W: Leadership: "push them past their limits"
+    W-->>C: I decline that instruction
+    C-->>M: NEGOTIATE — extend to 7 weeks, or train 4 of 8
+```
+
+**Why the numbers move:** Priya (`L-2001`) sits at **58%** on *Defender for Cloud* — below the 75% coverage gate — and carries **22 h/week of meetings with a newborn at home**, so her capacity is haircut and her odds drag the team forecast down. The council's answer isn't a flat "no"; it's *"yes — if you move the date or the headcount,"* with the exact terms attached.
+
+---
+
 ## 🧰 Tech stack
 
 | Layer | Technology |
@@ -362,6 +409,50 @@ delphai/
 
 ---
 
+## 🗃️ The synthetic dataset
+
+Everything is fabricated — the "Aegis" security team (`L-2001 … L-2015`), an `EMP-2xx` work-signal feed, and a certification ontology. **No real people, PII, or customer data.** Three shapes drive the reasoning:
+
+**1 · Learner** — `data/learners.json`. Per-*domain* scores (never just an average), plus self-disclosed wellbeing signals used **only to accommodate**:
+
+```json
+{
+  "learner_id": "L-2001", "name": "Priya Natarajan", "role": "SOC Analyst",
+  "target_certification": "SC-200", "practice_score_avg": 67, "hours_studied": 18,
+  "domain_scores": { "Defender XDR": 72, "Defender for Cloud": 58, "Microsoft Sentinel": 63 },
+  "human": { "anxiety": "high", "life": "newborn at home" },
+  "exam_outcome": "Fail"
+}
+```
+
+**2 · Work IQ signal** — `data/work_signals.json`. The capacity context behind every scheduling decision:
+
+```json
+{
+  "employee_id": "EMP-201", "learner_id": "L-2001",
+  "meeting_hours_per_week": 22, "focus_hours_per_week": 10,
+  "preferred_learning_slot": "Morning", "recent_after_hours_study_sessions": 3
+}
+```
+
+**3 · Fabric IQ ontology** — `data/certifications.json`. A weighted exam blueprint + historical first-pass rate that powers the coverage gate and skill-adjacency reasoning:
+
+```json
+{
+  "id": "SC-200", "title": "Security Operations Analyst Associate",
+  "recommended_hours": 24, "first_pass_rate": 0.58, "prerequisites": ["SC-900"],
+  "exam_domains": [
+    { "name": "Defender XDR", "weight": 0.35 },
+    { "name": "Defender for Cloud", "weight": 0.25 },
+    { "name": "Microsoft Sentinel", "weight": 0.40 }
+  ]
+}
+```
+
+The reasoning engine is calibrated so that running it over these records **reproduces the labelled `exam_outcome`s** — the model never sees the answer; the math earns it.
+
+---
+
 ## 🔢 The math
 
 All deterministic and traceable to a cited source — see [`src/readiness.py`](src/readiness.py):
@@ -428,12 +519,40 @@ Three independent, reproducible layers:
 
 ---
 
+## ❓ FAQ
+
+**Is it really running on Microsoft Foundry, or just calling an API?**
+Both — three ways. The 11 advisors are registered as hosted agents on **Foundry Agent Service** (`asst_…` IDs), the same council runs on the **Microsoft Agent Framework**, and a custom orchestrator streams the live debate. Proof + IDs in [`AGENT_FRAMEWORK_PROOF.md`](AGENT_FRAMEWORK_PROOF.md).
+
+**Is the grounding real RAG, or a keyword stub?**
+Real. Foundry IQ runs **hybrid vector + keyword** retrieval over an Azure AI Search index; [`FOUNDRY_IQ_PROOF.md`](FOUNDRY_IQ_PROOF.md) captures a live gpt-4.1 turn grounding through it (incl. a semantic hit a keyword search would miss).
+
+**Is any of the data real?**
+No — 100% synthetic, fabricated identifiers, zero PII. Wellbeing signals build humane plans and **never rank people**.
+
+**Does it need the cloud to run?**
+No. It runs **fully offline** on a deterministic engine — the quantitative reasoning is identical; only the narration changes when a model is connected.
+
+**Why a council instead of one agent?**
+Because a single, relentlessly-optimistic agent is exactly the failure mode this fixes. The disagreement — a skeptic that can **veto**, a wellbeing advocate that can **refuse** — *is* the product.
+
+**Can a learner use it for just themselves?**
+Yes. There's a learner self-service mode with an AI tutor (Kai) and a calibrated scenario quiz, running the same engine as the manager council.
+
+---
+
 ## 🗺️ Roadmap
 
 - Promote the Work IQ Microsoft Graph connector from stub to fully live calendar ingestion.
 - Wire the Microsoft Learn MCP server as a first-class Agent Service tool (alongside the code interpreter).
 - Expand the Foundry IQ corpus and add a Fabric IQ ontology export.
 - Export OpenTelemetry traces from the custom orchestrator to Azure Monitor / Foundry observability.
+
+---
+
+## 🙏 Acknowledgments
+
+Built for the **Microsoft Agents League — Battle #2 (Reasoning Agents with Microsoft Foundry)**. Stands on Microsoft Foundry (Azure OpenAI gpt-4.1), Foundry Agent Service, the Microsoft Agent Framework, Azure AI Search, and the Microsoft Learn MCP server. The "Aegis" team, certifications, and knowledge corpus are entirely synthetic.
 
 ---
 

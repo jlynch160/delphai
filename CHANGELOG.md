@@ -28,6 +28,9 @@ All notable changes to DELPHAI (Microsoft Agents League, Battle #2 — Reasoning
 - Rewrote the README as a professional showcase (badges, TOC, overview, problem, solution,
   differentiators, key features, architecture, tech stack, getting started, project structure,
   rubric mapping, roadmap) and added GitHub repository topics.
+- Expanded the README home page with a demo walkthrough, an end-to-end worked example (with a
+  council sequence diagram), the synthetic data model, an FAQ, and acknowledgments; set the repo
+  website to the live demo.
 
 ### Fixed / hygiene
 - Removed a real email address from `.env.example` (synthetic/no-PII compliance).
