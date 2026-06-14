@@ -6,6 +6,11 @@ __pycache__/
 .gitignore
 .pytest_cache/
 *.md
+assets/submission/
+*.mp4
+*.mov
+*.webm
+*.m4v
 connect_test.py
 
 quorum-new.html

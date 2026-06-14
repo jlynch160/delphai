@@ -12,11 +12,13 @@
 [![Azure AI Search](https://img.shields.io/badge/Foundry%20IQ-Azure%20AI%20Search-0078D4?logo=microsoftazure&logoColor=white)](#)
 [![Agent Framework](https://img.shields.io/badge/Microsoft-Agent%20Framework-5E2BFF)](#)
 [![Evals](https://img.shields.io/badge/evals-8%2F8%20passing-2ea44f)](#observability-evaluation--proof)
-[![Demo](https://img.shields.io/badge/demo-live-2ea44f)](https://delphai.wittyocean-5b0d21f3.westus3.azurecontainerapps.io/)
+[![Demo](https://img.shields.io/badge/demo-live-2ea44f)](https://delphai.politedune-a7af3b6c.westus3.azurecontainerapps.io/)
+[![Video](https://img.shields.io/badge/video-watch-red)](https://youtu.be/1CFzoLB6_fU)
 
 **Microsoft Agents League · Battle #2 — Reasoning Agents with Microsoft Foundry**
 
-[**▶ Live demo**](https://delphai.wittyocean-5b0d21f3.westus3.azurecontainerapps.io/) ·
+[**▶ Live demo**](https://delphai.politedune-a7af3b6c.westus3.azurecontainerapps.io/) ·
+[**Watch the video**](https://youtu.be/1CFzoLB6_fU) ·
 [Architecture](#-architecture) ·
 [The agents](#-the-council--11-reasoning-agents) ·
 [How it works](#-how-it-works) ·
@@ -43,6 +45,7 @@
 - [Tech stack](#-tech-stack)
 - [Getting started](#-getting-started)
 - [Project structure](#-project-structure)
+- [Submission package](#-submission-package)
 - [The synthetic dataset](#-the-synthetic-dataset)
 - [The math](#-the-math)
 - [Observability, evaluation & proof](#-observability-evaluation--proof)
@@ -98,7 +101,7 @@ DELPHAI turns that promise into a **defensible, grounded decision**:
 
 1. **One question in** — *"Can we certify 5 of 8 engineers for SC-200 in 5 weeks?"*
 2. **A council reasons over computed numbers** — an exact **Poisson-binomial** team forecast, a
-   **per-domain coverage gate**, and **Work IQ capacity**, all deterministic and cited.
+   **per-domain coverage gate**, and **Work IQ-aligned capacity**, all deterministic and cited.
 3. **The agents argue** — an optimist Planner, a Red-Team Skeptic (who can **veto**), and a Wellbeing
    advocate (who can **refuse**) debate the *same* numbers with *different* assumptions.
 4. **One verdict out** — **GO / NEGOTIATE / NO-GO**, with the concrete conditions to get to *yes*, a
@@ -110,9 +113,11 @@ The model **narrates** the reasoning; it does **not invent** the numbers.
 
 ## 🎬 What you'll see in the demo
 
-> **[▶ Open the live app](https://delphai.wittyocean-5b0d21f3.westus3.azurecontainerapps.io/)** — no login. Suggested path: **Build my path → Whole team → SC-200 → 5 of 8 → 5 weeks → Convene.**
+> **[▶ Watch the 3:25 demo video](https://youtu.be/1CFzoLB6_fU)** — the quickest path through the reasoning council, architecture map, math-tool overrule, and responsible-AI refusal.
 
-1. **The ask.** A readiness console takes one question — cert · headcount · deadline — then a live ingestion screen brings Work IQ / Foundry IQ / Fabric IQ and the Microsoft Learn MCP "online".
+> **[▶ Open the live app](https://delphai.politedune-a7af3b6c.westus3.azurecontainerapps.io/)** — no login. Suggested path: **Build my path → Whole team → SC-200 → 5 of 8 → 5 weeks → Convene.**
+
+1. **The ask.** A readiness console takes one question — cert · headcount · deadline — then a live ingestion screen brings Foundry IQ, IQ-aligned context/semantic layers, and the Microsoft Learn MCP "online".
 2. **The debate, streamed.** Eleven advisors reason token-by-token on gpt-4.1, each turn showing real latency + token telemetry. The optimist lands ~93–96%.
 3. **The tool-overrule** *(the moment to watch).* The Skeptic runs a code-interpreter tool, computes the exact Poisson-binomial — **77%** — and strikes through the optimist's guess.
 4. **The refusal.** Order the team past its limits and the Wellbeing agent **declines the instruction** outright — on the record.
@@ -175,8 +180,8 @@ flowchart TB
   COUNCIL -->|narration| MODEL["Microsoft Foundry — gpt-4.1 (quorum-gpt41)"]
 
   COUNCIL -. grounding .-> FIQ["Foundry IQ — Azure AI Search<br/>hybrid vector + keyword"]
-  COUNCIL -. work signals .-> WIQ["Work IQ — calendars · capacity"]
-  COUNCIL -. ontology .-> FAB["Fabric IQ — role·cert·skill·threshold"]
+  COUNCIL -. work signals .-> WIQ["Work IQ-aligned context<br/>calendars · capacity"]
+  COUNCIL -. ontology .-> FAB["Fabric IQ-aligned ontology<br/>role·cert·skill·threshold"]
   COUNCIL -. live tools .-> MCP["Microsoft Learn MCP · code interpreter"]
 
   AF["Microsoft Agent Framework · foundry_agents.py"] --> MODEL
@@ -213,7 +218,7 @@ the learner-mode AI tutor.
 | **Coach** — Sam Ellison | Enablement uplift — what behind learners should study and how much it moves the odds | Remediation / self-reflection |
 | **Study-Plan** — Leo Nakamura | Converts content into a capacity-aware weekly schedule; moves the *deadline*, not the willpower | Constraint planner |
 | **Wellbeing** — Maya Devlin | Protects people from overwork; **can VETO** and **refuses an unethical overwork order** | Responsible-AI guardrail |
-| **Engagement** — Ruth Adler | Times reminders to each person's Work IQ rhythm; eases off the overloaded | Context-aware nudging |
+| **Engagement** — Ruth Adler | Times reminders to each person's work-context rhythm; eases off the overloaded | Context-aware nudging |
 | **Curator** — Theo Park | Maps role→cert and grounds every claim in an approved source (Foundry IQ / Microsoft Learn) | Grounded retrieval |
 | **Verifier** — Omar Said | Fact-checks every claim; flags stale/unsupported data; integrity score | Anti-hallucination |
 | **Manager-Insights** — Iris Vaughn | Aggregate, no-PII team-readiness summary + calibration scorecard | Memory / calibration |
@@ -226,13 +231,13 @@ the learner-mode AI tutor.
 
 ## 🧬 Microsoft IQ integration
 
-DELPHAI integrates **all three** Microsoft IQ layers (the rubric requires at least one):
+DELPHAI implements a live **Foundry IQ** grounding layer and includes Work IQ / Fabric IQ-aligned synthetic layers for the rest of the enterprise-learning reasoning model (the rubric requires at least one Microsoft IQ layer):
 
 | Layer | Role in DELPHAI | Implementation |
 |---|---|---|
-| **Foundry IQ** | Grounded retrieval + citations for the Curator, Assessment, and Verifier agents | The synthetic KB is indexed into a real **Azure AI Search** service (`delphai-search`, index `delphai-knowledge`) and retrieved with **hybrid vector + keyword** search (`text-embedding-3-small`, RRF fusion) — the same substrate Foundry IQ is built on. `src/connectors/foundry_iq.py` · `scripts/build_foundry_iq.py` |
-| **Work IQ** | Capacity & engagement reasoning — study windows around real work rhythm | `data/work_signals.json` (meeting load, focus hours, after-hours) via a swappable connector with a real Microsoft Graph calendar stub (`WORK_IQ_SOURCE=graph`). `src/connectors/graph_calendar.py` |
-| **Fabric IQ** | The semantic layer — role · cert · skill · exam-domain · threshold relationships | `data/certifications.json` is a certification *ontology* (skills, exam-domain weights, prerequisites, first-pass rates) powering skill-adjacency ramps and the coverage gate. |
+| **Foundry IQ** | Grounded retrieval + citations for the Curator, Assessment, and Verifier agents | The synthetic KB is indexed into a real **Azure AI Search** service (`delphai-search`, index `delphai-knowledge`) and retrieved with **hybrid vector + keyword** search (`text-embedding-3-small`, RRF fusion). `src/connectors/foundry_iq.py` · `scripts/build_foundry_iq.py` |
+| **Work IQ-aligned context layer** | Capacity & engagement reasoning — study windows around work rhythm | `data/work_signals.json` (meeting load, focus hours, after-hours) via a swappable connector with a Microsoft Graph calendar stub (`WORK_IQ_SOURCE=graph`). `src/connectors/graph_calendar.py` |
+| **Fabric IQ-aligned semantic layer** | Role · cert · skill · exam-domain · threshold relationships | `data/certifications.json` is a certification ontology (skills, exam-domain weights, prerequisites, first-pass rates) powering skill-adjacency ramps and the coverage gate. |
 
 > **The connector swap seam:** agents consume a *derived signal shape*, never the source, so connectors
 > swap with zero agent changes (synthetic ⇄ live Graph; local corpus ⇄ Azure AI Search).
@@ -396,16 +401,33 @@ delphai/
 │   └── connectors/
 │       ├── foundry_iq.py        # Azure AI Search hybrid retrieval (Foundry IQ)
 │       ├── learn_mcp.py         # Microsoft Learn MCP client
-│       └── graph_calendar.py    # Work IQ (synthetic + Microsoft Graph stub)
+│       └── graph_calendar.py    # Work IQ-aligned context (synthetic + Microsoft Graph stub)
 ├── scripts/
 │   ├── build_foundry_iq.py      # build & populate the Azure AI Search index
 │   └── prove_foundry_iq.py      # live runtime proof of Foundry IQ grounding
 ├── data/                        # synthetic learners, certs, work signals, KB docs
+├── assets/submission/           # architecture image, cover/end images, lower thirds, project description
 ├── evals/run_evals.py           # 8/8 reasoning evaluations
 ├── FOUNDRY_IQ_PROOF.md          # captured live grounding proof
-├── AGENT_FRAMEWORK_PROOF.md     # hosted-agent IDs + tool-using debate transcript
-└── VIDEO_SCRIPT.md              # demo video shot list
+└── AGENT_FRAMEWORK_PROOF.md     # hosted-agent IDs + tool-using debate transcript
 ```
+
+---
+
+## 🎞️ Submission package
+
+The repo includes the image and copy assets needed to complete the hackathon project page and video wrapper:
+
+| Asset | Purpose |
+|---|---|
+| [`assets/submission/SUBMISSION_DESCRIPTION.md`](assets/submission/SUBMISSION_DESCRIPTION.md) | Project title, tagline, keywords, and markdown description |
+| [`assets/submission/architecture-live-map.png`](assets/submission/architecture-live-map.png) | Upload-ready architecture diagram screenshot from the in-app Live Architecture Map |
+| [`assets/submission/delphai-cover-submission.png`](assets/submission/delphai-cover-submission.png) | Project cover / video opening image |
+| [`assets/submission/delphai-end-submission.png`](assets/submission/delphai-end-submission.png) | Project end-card image |
+| [`assets/submission/delphai-video-opening-lower-third.png`](assets/submission/delphai-video-opening-lower-third.png) | Video opening frame with lower-third text |
+| [`assets/submission/delphai-video-ending-lower-third.png`](assets/submission/delphai-video-ending-lower-third.png) | Video closing frame with live demo URL |
+
+The final demo video is hosted on YouTube: [`https://youtu.be/1CFzoLB6_fU`](https://youtu.be/1CFzoLB6_fU). Do not commit large `.mp4`, `.mov`, or `.webm` exports unless the rules explicitly require the binary in GitHub.
 
 ---
 
@@ -425,7 +447,7 @@ Everything is fabricated — the "Aegis" security team (`L-2001 … L-2015`), an
 }
 ```
 
-**2 · Work IQ signal** — `data/work_signals.json`. The capacity context behind every scheduling decision:
+**2 · Work IQ-aligned signal** — `data/work_signals.json`. The capacity context behind every scheduling decision:
 
 ```json
 {
@@ -435,7 +457,7 @@ Everything is fabricated — the "Aegis" security team (`L-2001 … L-2015`), an
 }
 ```
 
-**3 · Fabric IQ ontology** — `data/certifications.json`. A weighted exam blueprint + historical first-pass rate that powers the coverage gate and skill-adjacency reasoning:
+**3 · Fabric IQ-aligned ontology** — `data/certifications.json`. A weighted exam blueprint + historical first-pass rate that powers the coverage gate and skill-adjacency reasoning:
 
 ```json
 {
@@ -509,7 +531,7 @@ Three independent, reproducible layers:
 | **Microsoft Foundry (live)** | gpt-4.1 `quorum-gpt41` on `quorum-foundry-jl`, streamed via `/api/council/stream` |
 | **Microsoft Agent Framework** | full council as real `agent_framework` agents — proven live ([`AGENT_FRAMEWORK_PROOF.md`](AGENT_FRAMEWORK_PROOF.md)) |
 | **Foundry Agent Service + agentic tool use** | 11 advisors as persistent hosted agents (`asst_…`); live debate where the Skeptic's **code-interpreter tool** computes 77% and overrules the optimist |
-| **≥ 1 Microsoft IQ layer** | **all three** — Foundry IQ on real Azure AI Search, Work IQ, Fabric IQ |
+| **≥ 1 Microsoft IQ layer** | live Foundry IQ grounding on Azure AI Search, plus Work IQ / Fabric IQ-aligned synthetic reasoning layers |
 | **External tools / MCP** | real **Microsoft Learn MCP** (`microsoft_docs_search`) + code interpreter |
 | **Synthetic data only** | fabricated learners, certs, KB — no PII |
 | **Grounded, cited outputs** | Foundry IQ citations + Verifier; clickable source docs |
@@ -562,7 +584,8 @@ Built for the **Microsoft Agents League — Battle #2 (Reasoning Agents with Mic
 
 <div align="center">
 
-**[▶ Open the live demo](https://delphai.wittyocean-5b0d21f3.westus3.azurecontainerapps.io/)** ·
+**[▶ Open the live demo](https://delphai.politedune-a7af3b6c.westus3.azurecontainerapps.io/)** ·
+**[Watch the video](https://youtu.be/1CFzoLB6_fU)** ·
 Built on Microsoft Foundry · Synthetic data only
 
 </div>

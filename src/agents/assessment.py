@@ -38,8 +38,16 @@ class AssessmentAgent(BaseAgent):
         }
     }
 
+    SOURCE_BY_CERT = {
+        "AZ-204": "KB-ENABLE-001",
+        "SC-200": "KB-SEC-001",
+        "AZ-500": "KB-SEC-001",
+        "SC-100": "KB-SEC-001",
+    }
+
     def _generic_item(self, cert) -> dict:
         top = max(cert.exam_domains, key=lambda d: d["weight"])
+        source = self.SOURCE_BY_CERT.get(cert.id, "KB-REPORT-002")
         return {
             "stem": f"Within {cert.id}, which area carries the most exam weight and should be "
                     f"prioritised first?",
@@ -55,7 +63,7 @@ class AssessmentAgent(BaseAgent):
                 "C": "ignores that exam domains are weighted unequally",
                 "D": "optimises for effort, not exam impact",
             },
-            "source": "KB-ENABLE-001",
+            "source": source,
             "domain": top["name"],
         }
 

@@ -6,6 +6,14 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .DS_Store
+.playwright-mcp/
+
+# generated video exports — upload these to the submission/video host instead
+*.mp4
+*.mov
+*.webm
+*.m4v
+assets/submission/*-source.png
 
 # local backups / scratch — not part of the submission
 quorum-classic.html
